@@ -8,14 +8,15 @@
 // Return: n/a
 /**************************************************************/
   const firebaseConfig = {
-    apiKey: ,
-    authDomain: ,
-    databaseURL: ,
-    projectId: ,
-    storageBucket: ,
-    messagingSenderId:,
-    appId:
-  };
+  apiKey: "AIzaSyDPKeaEAGuySZZ9x7R_10NmJuwEM4GTGL8",
+  authDomain: "nityaa-kansara-12comp.firebaseapp.com",
+  databaseURL: "https://nityaa-kansara-12comp-default-rtdb.firebaseio.com",
+  projectId: "nityaa-kansara-12comp",
+  storageBucket: "nityaa-kansara-12comp.firebasestorage.app",
+  messagingSenderId: "624311963857",
+  appId: "1:624311963857:web:3aca030c6efa831bd2f5f0",
+  measurementId: "G-L3QV0PLWNW"
+};
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
