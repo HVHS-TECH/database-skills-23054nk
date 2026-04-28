@@ -30,4 +30,20 @@ function helloWorld(){
       message: 'Goodbye'
     }
   )
+
+ function simpleRead() {
+    console.log ("reading message");
+    firebase.database().ref('/').child('message').once('value',displayRead);
+    console.log('Leaving simpleRead')
+
+ }
+
+ function displayRead(snapshot) {
+    console.log("Running displayRead(), the message is:" + snapshot.val())
+    HTML_OUTPUT.innerHTML = snapshot.val();
+
+ }
+
+
+
 }
