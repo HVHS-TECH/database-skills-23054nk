@@ -32,6 +32,13 @@ function helloWorld(){
   )
 }
 
+/*** 
+
+function DO_THIS (snapshot) {
+  console.log (snapshot.val());
+}
+
+//function simple read
  function simpleRead() {
     console.log ("reading message");
     //firebase.database().ref('/').child('message').once('value',displayRead);
@@ -39,7 +46,13 @@ function helloWorld(){
     console.log('Leaving simpleRead')
 
  }
+// function display
+function display (snapshot) {
+  console.log ("Running display(), the message is: " + snapshot.val())
+  HTML_OUTPUT.innerHTML= snapshot.val();
+}
 
+// null checks 
  function displayRead(snapshot) {
     var dbData = snapshot.val();
     if (dbData == null) 
@@ -51,13 +64,53 @@ function helloWorld(){
       console.log ("the message is: " + dbData)
     }
 
-    /*console.log("Running displayRead(), the message is:" + snapshot.val())
-    HTML_OUTPUT.innerHTML = snapshot.val();*/
-
+  console.log("Running displayRead(), the message is:" + snapshot.val())
+  HTML_OUTPUT.innerHTML = snapshot.val();
  }
 
  function fb_readError(error) 
  {
   console.log ("there was an error reading the message");
+  console.error(error);
+ }*/
+
+  
+function DO_THIS (snapshot) {
+  console.log (snapshot.val());
+}
+
+//function simple read
+ function simpleRead() {
+    console.log ("reading theWord");
+    //firebase.database().ref('/').child('message').once('value',displayRead);
+    firebase.database().ref('/').child('theWord').once('value',displayRead, fb_readError);
+    console.log('Leaving simpleRead')
+
+ }
+// function display
+function display (snapshot) {
+  console.log ("Running display(), the theWord is: " + snapshot.val())
+  HTML_OUTPUT.innerHTML= snapshot.val();
+}
+
+// null checks 
+ function displayRead(snapshot) {
+    var dbData = snapshot.val();
+    if (dbData == null) 
+    {
+      console.log('there was no record when trying to read the theWord');
+    }
+     else
+    {
+      console.log ("the theWord is: " + dbData)
+    }
+
+  console.log("Running displayRead(), the theWord is:" + snapshot.val())
+  HTML_OUTPUT.innerHTML = snapshot.val();
+ }
+
+ function fb_readError(error) 
+ {
+  console.log ("there was an error reading the theWord");
   console.error(error);
  }
