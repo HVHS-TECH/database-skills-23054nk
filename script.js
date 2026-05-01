@@ -83,19 +83,13 @@ function DO_THIS (snapshot) {
  function simpleRead() {
     console.log ("reading theWord");
     //firebase.database().ref('/').child('message').once('value',displayRead);
-    firebase.database().ref('/').child('theWord').once('value',displayRead, fb_readError);
+    firebase.database().ref('/').child('theWord').once('value',display, fb_readError);
     console.log('Leaving simpleRead')
 
  }
-// function display
+// function display (displaying "theWord")
 function display (snapshot) {
-  console.log ("Running display(), the theWord is: " + snapshot.val())
-  HTML_OUTPUT.innerHTML= snapshot.val();
-}
-
-// null checks 
- function displayRead(snapshot) {
-    var dbData = snapshot.val();
+   var dbData = snapshot.val();
     if (dbData == null) 
     {
       console.log('there was no record when trying to read the theWord');
@@ -104,13 +98,53 @@ function display (snapshot) {
     {
       console.log ("the theWord is: " + dbData)
     }
+  console.log ("Running display(), the theWord is: " + snapshot.val())
+  HTML_OUTPUT.innerHTML= snapshot.val();
+}
 
-  console.log("Running displayRead(), the theWord is:" + snapshot.val())
-  HTML_OUTPUT.innerHTML = snapshot.val();
- }
 
  function fb_readError(error) 
- {
+{
   console.log ("there was an error reading the theWord");
   console.error(error);
- }
+}
+
+
+ // read listeners - real time data synchronisation, 
+ // connection between the application and the database 
+ function fb_readListener() 
+{
+  console.log ("Read Listener");
+  firebase.database().ref('/message').on('value',  fb_logDatabaseRead)
+}
+
+// Writing more complex data
+firebase.database().ref('/').set
+(
+{
+  game1: 
+  {
+    users:
+    {
+      Sally: 999999,
+      Lucy: 100000,
+      Delilah: 9,
+      Janice:878577,
+    }
+  }
+}
+);
+
+// more complex scores 
+highscoreTable = {
+  game1: {
+    user01:
+  {    
+    name: "Sally",
+    score: 999999
+  } 
+  user02:
+    name: "Gauri",
+    score: 454657
+  }
+}
