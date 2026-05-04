@@ -119,6 +119,7 @@ function display (snapshot) {
 }
 
 // Writing more complex data
+/*
 firebase.database().ref('/').set
 (
 {
@@ -133,18 +134,33 @@ firebase.database().ref('/').set
     }
   }
 }
-);
+);*/
 
 // more complex scores 
 highscoreTable = {
   game1: {
+
     user01:
-  {    
-    name: "Sally",
-    score: 999999
-  } 
-  user02:
-    name: "Gauri",
-    score: 454657
+    {    
+      name: "Sally",
+      score: 999999
+    },
+
+    user02:
+    {
+      name: "Gauri",
+      score: 454657
+    },
+
+  user03 
+    {
+      name: "lucy",
+      score: 3497564
+    }
+
+  user04
+    {
+      name: "delilah",
+    }
   }
 }
