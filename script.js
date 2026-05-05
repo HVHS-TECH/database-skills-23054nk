@@ -32,48 +32,6 @@ function helloWorld(){
   )
 }
 
-/*** 
-
-function DO_THIS (snapshot) {
-  console.log (snapshot.val());
-}
-
-//function simple read
- function simpleRead() {
-    console.log ("reading message");
-    //firebase.database().ref('/').child('message').once('value',displayRead);
-    firebase.database().ref('/').child('message').once('value',displayRead, fb_readError);
-    console.log('Leaving simpleRead')
-
- }
-// function display
-function display (snapshot) {
-  console.log ("Running display(), the message is: " + snapshot.val())
-  HTML_OUTPUT.innerHTML= snapshot.val();
-}
-
-// null checks 
- function displayRead(snapshot) {
-    var dbData = snapshot.val();
-    if (dbData == null) 
-    {
-      console.log('there was no record when trying to read the message');
-    }
-     else
-    {
-      console.log ("the message is: " + dbData)
-    }
-
-  console.log("Running displayRead(), the message is:" + snapshot.val())
-  HTML_OUTPUT.innerHTML = snapshot.val();
- }
-
- function fb_readError(error) 
- {
-  console.log ("there was an error reading the message");
-  console.error(error);
- }*/
-
   
 function DO_THIS (snapshot) {
   console.log (snapshot.val());
@@ -119,7 +77,7 @@ function display (snapshot) {
 }
 
 // Writing more complex data
-/*
+
 firebase.database().ref('/').set
 (
 {
@@ -134,11 +92,13 @@ firebase.database().ref('/').set
     }
   }
 }
-);*/
+);
 
 // more complex scores 
-highscoreTable = {
-  game1: {
+highscoreTable=
+{
+  game1: 
+  {
 
     user01:
     {    
@@ -152,15 +112,25 @@ highscoreTable = {
       score: 454657
     },
 
-  user03 
+  user03:
     {
       name: "lucy",
       score: 3497564
-    }
+    },
 
-  user04
+  user04:
     {
       name: "delilah",
+      score: 45943654
     }
   }
+};
+
+
+// Reading a path
+function fb_readHighScores()
+{
+  console.log("reading High Scores");
+  firebase.database().ref('/highscores/game1').once('value', fb_logDatabaseRead, rb_error);
+  console.log("read high scores");
 }
