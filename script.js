@@ -100,13 +100,13 @@ highscoreTable=
   game1: 
   {
 
-    user01:
+  user01:
     {    
       name: "Sally",
       score: 999999
     },
 
-    user02:
+  user02:
     {
       name: "Gauri",
       score: 454657
@@ -124,13 +124,24 @@ highscoreTable=
       score: 45943654
     }
   }
-};
+} 
+firebase.database().ref("/").set(highscoreTable)
 
 
 // Reading a path
+
 function fb_readHighScores()
 {
-  console.log("reading High Scores");
-  firebase.database().ref('/highscores/game1').once('value', fb_logDatabaseRead, rb_error);
+ console.log("reading High Scores");
+  firebase.database().ref('/game1/user01').once('value', poop, fb_readError);
   console.log("read high scores");
+}
+
+
+
+function poop (pee) {
+  console.log("displaying High Scores");
+  console.log(pee.val())
+  console.log("sally got "+ highscoreTable["Sally"]+ "  points")
+
 }
