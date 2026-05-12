@@ -79,7 +79,7 @@ function display (snapshot) {
 // Writing more complex data
 
 firebase.database().ref('/').set
-(
+/*(
 {
   game1: 
   {
@@ -92,7 +92,7 @@ firebase.database().ref('/').set
     }
   }
 }
-);
+);*/
 
 // more complex scores 
 highscoreTable=
@@ -103,7 +103,7 @@ highscoreTable=
   user01:
     {    
       name: "Sally",
-      score: 999999
+      score: 9987868
     },
 
   user02:
@@ -133,15 +133,33 @@ firebase.database().ref("/").set(highscoreTable)
 function fb_readHighScores()
 {
  console.log("reading High Scores");
-  firebase.database().ref('/game1/user01').once('value', poop, fb_readError);
+  firebase.database().ref('/game1/user04').once('value', poop, fb_readError);
   console.log("read high scores");
 }
 
 
 
-function poop (pee) {
+function poop (pee) 
+{
   console.log("displaying High Scores");
   console.log(pee.val())
-  console.log("sally got "+ highscoreTable["Sally"]+ "  points")
+  console.log("delilah got "+ highscoreTable ["delilah"]+ "  points")
 
+}
+
+// sorting records
+snapshot.forEach(DO_THIS)
+function fb_displayHighScores(snapshot)
+{
+  snapshot.forEach(DO_THIS)
+}
+
+functionfb_displayHighScores(snapshot) 
+{
+  snapshot.forEach (fb_showOneScore)
+}
+
+function fb_showOneScore (child)
+{
+  console.log (child.val());
 }
