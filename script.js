@@ -88,7 +88,7 @@ firebase.database().ref('/').set
       Sally: 999999,
       Lucy: 100000,
       Delilah: 9,
-      Janice:878577,
+      Janice:878577
     }
   }
 }
@@ -100,32 +100,16 @@ highscoreTable=
   game1: 
   {
 
-  user01:
+  users:
     {    
-      name: "Sally",
-      score: 9987868
-    },
-
-  user02:
-    {
-      name: "Gauri",
-      score: 454657
-    },
-
-  user03:
-    {
-      name: "lucy",
-      score: 3497564
-    },
-
-  user04:
-    {
-      name: "delilah",
-      score: 45943654
+      Sally: 999999,
+      Lucy: 100000,
+      Delilah: 9,
+      Janice:878577
     }
   }
 } 
-firebase.database().ref("/").set(highscoreTable)
+//firebase.database().ref("/").set(highscoreTable)
 
 
 // Reading a path
@@ -133,33 +117,38 @@ firebase.database().ref("/").set(highscoreTable)
 function fb_readHighScores()
 {
  console.log("reading High Scores");
-  firebase.database().ref('/game1/user04').once('value', poop, fb_readError);
+  firebase.database().ref('/game1/users').orderByValue().once('value', fb_displayHighScores, fb_readError);
   console.log("read high scores");
 }
 
 
 
-function poop (pee) 
-{
-  console.log("displaying High Scores");
-  console.log(pee.val())
-  console.log("delilah got "+ highscoreTable ["delilah"]+ "  points")
-
-}
-
-// sorting records
-snapshot.forEach(DO_THIS)
-function fb_displayHighScores(snapshot)
-{
-  snapshot.forEach(DO_THIS)
-}
-
-functionfb_displayHighScores(snapshot) 
-{
+function fb_displayHighScores(snapshot) {
   snapshot.forEach (fb_showOneScore)
+  let highScores = snapshot.val()
+  console.log("displaying High Scores");
+  console.log(snapshot.val())
+  console.log("Sally got "+ highScores ["Sally"]+ "  points")
+  console.log("Lucy got "+ highScores ["Lucy"]+ "  points")
+  console.log("Delilah got "+ highScores ["Delilah"]+ "  points")
+  console.log("Janice got "+ highScores ["Janice"]+ "  points")
+
 }
 
-function fb_showOneScore (child)
-{
+
+function fb_showOneScore (child) {
   console.log (child.val());
 }
+
+//log in with google 
+function fb_popupLogin()
+{
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then ((result) =>
+  {
+  GLOBAL_user = result.user; //save the user details object to a global variable 
+  console.log("User has logged in")
+  });
+}
+
