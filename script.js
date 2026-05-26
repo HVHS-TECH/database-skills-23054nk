@@ -140,3 +140,50 @@ function fb_showOneScore (child) {
   console.log (child.val());
 }
 
+
+
+
+
+
+// security 
+
+{
+//allow anyone to read my data 
+// only authentidcated content 
+// owners can make changes to their data 
+"rules": 
+{
+  ".read": true,
+  ".write": false,
+  "users": 
+  {
+"$uid":
+{
+  ".read":true,
+  ".write": "auth.uid === $uid"
+}
+}
+} 
+}
+
+{
+  // open rules for testing 
+  "rules":
+  {
+".read": true,
+".write":true,
+  }
+}
+
+//sequencing
+async function blockingRead()
+{
+  console.log("Reading message");
+  var snapshot = await firebase.database().ref('/message').once('value');
+  displayRead(snapshot);
+  console.log("Leaving blockingRead")
+}
+
+function displayRead (snapshot) {
+  console.log("the message is: "+ snapshot.val())
+}
