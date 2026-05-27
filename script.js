@@ -147,10 +147,12 @@ function fb_showOneScore (child) {
 
 // security 
 
+/*
 {
 //allow anyone to read my data 
 // only authentidcated content 
 // owners can make changes to their data 
+
 "rules": 
 {
   ".read": true,
@@ -174,16 +176,17 @@ function fb_showOneScore (child) {
 ".write":true,
   }
 }
+*/
 
-//sequencing
-async function blockingRead()
-{
-  console.log("Reading message");
+
+async function blockingRead(){
+  console.log("reading message");
   var snapshot = await firebase.database().ref('/message').once('value');
   displayRead(snapshot);
-  console.log("Leaving blockingRead")
+  console.log("leaving blockingRead")
+
 }
 
-function displayRead (snapshot) {
-  console.log("the message is: "+ snapshot.val())
+function displayRead(snapshot) {
+  console.log("the message is: " + snapshot.val())
 }
